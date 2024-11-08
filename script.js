@@ -3,7 +3,7 @@ let computedSize = window.getComputedStyle(gridContainer).width;
 computedSize = parseFloat(computedSize);
 let size = 16;
 let enableDrawing = false;
-
+let gaymode = false;
 //function that toggles drawing through mouse click
 gridContainer.addEventListener('mousedown', () => {
     enableDrawing = !enableDrawing;
@@ -12,6 +12,18 @@ gridContainer.addEventListener('mousedown', () => {
 gridContainer.addEventListener('mouseup', () => {
     enableDrawing = false;
 });
+
+const rainbow = document.querySelector("#rainbow");
+//function to generate random colors
+function getRainbow(){
+    const r = Math.floor(Math.random() * 256); // Red value (0-255)
+    const g = Math.floor(Math.random() * 256); // Green value (0-255)
+    const b = Math.floor(Math.random() * 256); // Blue value (0-255)
+    return `rgb(${r}, ${g}, ${b})`;
+}
+rainbow.addEventListener("click", ()=>{
+    gaymode = !gaymode;
+})
 
 createGrid(size);
 const newGrid = document.querySelector("#new-grid");
@@ -58,7 +70,12 @@ function createGrid(size) {
             cell.style.height = `${squareSize}px`;
             cell.addEventListener("mouseenter", () => {
                 if (enableDrawing) {
-                    cell.style.backgroundColor = selectedColor;
+                    if(gaymode){
+                        cell.style.backgroundColor = getRainbow();
+                    }
+                    else{
+                        cell.style.backgroundColor = selectedColor;
+                    };
                 };
             });
             row.appendChild(cell);
