@@ -10,7 +10,7 @@ body {
 }
 
 button,
-input {
+input, #rainbow{
     width:fit-content;
     height: 25px;
     border-radius: 10px;
@@ -21,8 +21,20 @@ input {
 input{
     width: 25px;
 }
-
-#new-grid:hover, #erase-grid:hover, #rainbow:active,
+#rainbow + label {
+    display: inline-block;
+    padding: 4px;
+    color: #55286F;
+    background-color: #D8B4E2;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 14px;
+}
+#rainbow{
+    display: none;
+}
+#new-grid:hover, #erase-grid:hover, #rainbow:checked + label,
 input:hover {
     color: #D8B4E2;
     background-color: #210b2c;
