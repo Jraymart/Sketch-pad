@@ -4,6 +4,7 @@ computedSize = parseFloat(computedSize);
 let size = 16;
 let enableDrawing = false;
 let gaymode = false;
+let darkenMode = false;
 //function that toggles drawing through mouse click
 gridContainer.addEventListener('mousedown', () => {
     enableDrawing = !enableDrawing;
@@ -23,7 +24,14 @@ function getRainbow(){
 }
 rainbow.addEventListener("click", ()=>{
     gaymode = !gaymode;
-})
+});
+
+//function to darken by 10% everytime a square is hovered
+const darken = document.querySelector("#darken");
+darken.addEventListener("click", () =>{
+    darkenMode = !darkenMode;
+});
+
 
 createGrid(size);
 const newGrid = document.querySelector("#new-grid");
@@ -56,8 +64,6 @@ colorPick.addEventListener('input', (e) => {
     colorPickerButton.style.backgroundColor =e.target.value;
 });
 
-
-
 function createGrid(size) {
     //clears squares
     gridContainer.innerHTML = '';
@@ -73,14 +79,23 @@ function createGrid(size) {
             cell.className = 'cell';
             cell.style.width = `${squareSize}px`;
             cell.style.height = `${squareSize}px`;
+            cell.style.opacity = 0;
             cell.addEventListener("mouseenter", () => {
                 if (enableDrawing) {
+                    let color = selectedColor;
                     if(gaymode){
-                        cell.style.backgroundColor = getRainbow();
+                        color = getRainbow();
+                    }
+                    if(darkenMode){
+                        let currentOpac = parseFloat(cell.style.opacity);
+                        if(currentOpac < 1){
+                            cell.style.opacity = currentOpac + 0.1;
+                        }
                     }
                     else{
-                        cell.style.backgroundColor = selectedColor;
+                        cell.style.opacity = 1
                     };
+                    cell.style.backgroundColor = color;
                 };
             });
             row.appendChild(cell);

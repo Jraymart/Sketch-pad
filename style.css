@@ -8,11 +8,11 @@ body {
     background-color: #D8B4E2;
     text-align: center;
 }
-
 button,
 input, #rainbow{
+
     width:fit-content;
-    height: 25px;
+    height: 50px;
     border-radius: 10px;
     background-color: #D8B4E2;
     border: none;
@@ -30,9 +30,11 @@ input{
     cursor:pointer;
     display:inline-block;
 }
-#rainbow + label {
+
+#rainbow + label, #darken + label {
     display: inline-block;
-    padding: 4px;
+    height: 50px;
+    padding: 10px 4px 4px 4px;
     color: #55286F;
     background-color: #D8B4E2;
     border-radius: 10px;
@@ -40,10 +42,14 @@ input{
     transition: background-color 0.3s, color 0.3s;
     font-size: 14px;
 }
-#rainbow{
+#darken + label{
+    padding-top: 16px;
+}
+#rainbow, #darken{
     display: none;
 }
-#new-grid:hover, #erase-grid:hover, #rainbow:checked + label,
+
+#new-grid:hover, #erase-grid:hover, #rainbow:checked + label, #darken:checked + label,
 input:hover {
     color: #D8B4E2;
     background-color: #210b2c;
