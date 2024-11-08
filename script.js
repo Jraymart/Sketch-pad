@@ -47,8 +47,13 @@ eraseGrid.addEventListener("click", () => {
 //function to change colors
 let selectedColor = "black";
 const colorPick = document.querySelector("#color-picker");
+const colorPickerButton = document.querySelector("#color-picker-button");
+colorPickerButton.addEventListener("click", ()=>{
+    colorPick.click();
+});
 colorPick.addEventListener('input', (e) => {
     selectedColor = e.target.value;
+    colorPickerButton.style.backgroundColor =e.target.value;
 });
 
 

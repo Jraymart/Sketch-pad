@@ -21,6 +21,15 @@ input, #rainbow{
 input{
     width: 25px;
 }
+#color-picker-button{
+    height:25px;
+    width: 25px;
+    border-radius:50%;
+    background-color:black;
+    border:2px solid #D8B4E2;
+    cursor:pointer;
+    display:inline-block;
+}
 #rainbow + label {
     display: inline-block;
     padding: 4px;
