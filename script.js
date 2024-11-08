@@ -2,6 +2,17 @@ const gridContainer = document.querySelector("#grid-container");
 let computedSize = window.getComputedStyle(gridContainer).width;
 computedSize = parseFloat(computedSize);
 let size = 16;
+let enableDrawing = false;
+
+//function that toggles drawing through mouse click
+gridContainer.addEventListener('mousedown', () => {
+    enableDrawing = !enableDrawing;
+});
+
+gridContainer.addEventListener('mouseup', () => {
+    enableDrawing = false;
+});
+
 createGrid(size);
 const newGrid = document.querySelector("#new-grid");
 
@@ -28,6 +39,8 @@ colorPick.addEventListener('input', (e) => {
     selectedColor = e.target.value;
 });
 
+
+
 function createGrid(size) {
     //clears squares
     gridContainer.innerHTML = '';
@@ -44,11 +57,12 @@ function createGrid(size) {
             cell.style.width = `${squareSize}px`;
             cell.style.height = `${squareSize}px`;
             cell.addEventListener("mouseenter", () => {
-                cell.style.backgroundColor = selectedColor;
-            })
+                if (enableDrawing) {
+                    cell.style.backgroundColor = selectedColor;
+                };
+            });
             row.appendChild(cell);
         }
-
         gridContainer.appendChild(row);
     }
 }
